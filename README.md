@@ -113,3 +113,107 @@ Each section of your JavaScript should be commented to explain its purpose.
 </body>
 </html>
 
+script.js
+/* -----------------------------
+   Event Handling & Organization
+-------------------------------*/
+
+/* Part 1: Form Validation Logic */
+
+// Grab form & related elements
+const contactForm = document.getElementById('contactForm');
+const usernameInput = document.getElementById('username');
+const emailInput    = document.getElementById('email');
+const messageInput  = document.getElementById('message');
+const errorUsername = document.getElementById('error-username');
+const errorEmail    = document.getElementById('error-email');
+const errorMessage  = document.getElementById('error-message');
+const formSuccess   = document.getElementById('formSuccess');
+
+// Custom validation function
+function validateForm() {
+  let isValid = true;
+
+  // Clear previous errors
+  errorUsername.textContent = '';
+  errorEmail.textContent = '';
+  errorMessage.textContent = '';
+  formSuccess.textContent = '';
+
+  // Name validation: not empty
+  if (!usernameInput.value.trim()) {
+    errorUsername.textContent = 'Name is required.';
+    isValid = false;
+  }
+
+  // Email validation: basic pattern
+  const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  if (!emailInput.value.trim()) {
+    errorEmail.textContent = 'Email is required.';
+    isValid = false;
+  } else if (!emailPattern.test(emailInput.value.trim())) {
+    errorEmail.textContent = 'Please enter a valid email address.';
+    isValid = false;
+  }
+
+  // Message validation: minimum length
+  if (!messageInput.value.trim()) {
+    errorMessage.textContent = 'Message cannot be empty.';
+    isValid = false;
+  } else if (messageInput.value.trim().length < 10) {
+    errorMessage.textContent = 'Message must be at least 10 characters.';
+    isValid = false;
+  }
+
+  return isValid;
+}
+
+// Form submit handler
+contactForm.addEventListener('submit', event => {
+  event.preventDefault();
+  if (validateForm()) {
+    formSuccess.textContent = 'Form submitted successfully!';
+    contactForm.reset();
+  }
+});
+
+
+/* Part 2: Interactive Feature A — Random Quote Generator */
+
+const quotes = [
+  "The journey of a thousand miles begins with one step.",
+  "Knowledge is power.",
+  "Be yourself; everyone else is already taken."
+];
+const btnQuote = document.getElementById('btnQuote');
+const quoteDisplay = document.getElementById('quoteDisplay');
+
+btnQuote.addEventListener('click', () => {
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+  quoteDisplay.textContent = quotes[randomIndex];
+});
+
+
+/* Part 3: Interactive Feature B — Theme Toggle */
+
+const btnTheme = document.getElementById('btnTheme');
+let darkMode = false;
+
+btnTheme.addEventListener('click', () => {
+  darkMode = !darkMode;
+  document.body.classList.toggle('dark-theme', darkMode);
+  btnTheme.textContent = darkMode ? 'Switch to Light Theme' : 'Switch to Dark Theme';
+});
+
+
+/* Part 4: Additional Event Handling (for demonstration) */
+
+// Clear error message when typing in username
+usernameInput.addEventListener('input', () => errorUsername.textContent = '');
+
+// Clear error message when typing in email
+emailInput.addEventListener('input', () => errorEmail.textContent = '');
+
+// Clear error when typing in message
+messageInput.addEventListener('input', () => errorMessage.textContent = '');
+
