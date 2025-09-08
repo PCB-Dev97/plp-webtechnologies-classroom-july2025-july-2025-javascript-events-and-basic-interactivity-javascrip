@@ -56,3 +56,60 @@ Each section of your JavaScript should be commented to explain its purpose.
 * Clear, modular, and well-commented JavaScript code
 * A clean and functional user experience
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Interactive Form & Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Interactive Web Page Demo</h1>
+  </header>
+
+  <main>
+    <!-- Section 1: Form -->
+    <section id="form-section">
+      <h2>Contact Us Form</h2>
+      <form id="contactForm" novalidate>
+        <div>
+          <label for="username">Name:</label>
+          <input type="text" id="username" name="username">
+          <div class="error" id="error-username"></div>
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="text" id="email" name="email">
+          <div class="error" id="error-email"></div>
+        </div>
+        <div>
+          <label for="message">Message:</label>
+          <textarea id="message" name="message"></textarea>
+          <div class="error" id="error-message"></div>
+        </div>
+        <button type="submit" id="submitBtn">Send Message</button>
+      </form>
+      <div id="formSuccess" class="success"></div>
+    </section>
+
+    <!-- Section 2: Interactive Feature A -->
+    <section id="featureA">
+      <h2>Interactive Feature: Random Quote</h2>
+      <button id="btnQuote">Get a Quote</button>
+      <p id="quoteDisplay"></p>
+    </section>
+
+    <!-- Section 3: Interactive Feature B -->
+    <section id="featureB">
+      <h2>Interactive Feature: Toggle Color Theme</h2>
+      <button id="btnTheme">Toggle Theme</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
